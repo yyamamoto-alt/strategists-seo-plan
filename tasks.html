@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategists SEO改善プロジェクト — 実行プラン</title>
+<style>
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 0 24px;
+    color: #222;
+    line-height: 1.9;
+    font-size: 15px;
+  }
+  h1 { font-size: 22px; border-bottom: 2px solid #222; padding-bottom: 8px; }
+  h2 { font-size: 17px; margin-top: 40px; border-left: 4px solid #dc2626; padding-left: 12px; }
+  h3 { font-size: 15px; margin-top: 24px; color: #1e40af; }
+  .meta { font-size: 13px; color: #888; margin-bottom: 24px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0; }
+  th { background: #f5f5f5; padding: 8px 12px; text-align: left; border: 1px solid #ddd; font-weight: 600; }
+  td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+  ul, ol { padding-left: 22px; }
+  li { margin: 4px 0; }
+  code { background: #f5f5f5; padding: 1px 4px; font-size: 13px; }
+  .badge {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .ai { background: #eff6ff; color: #1d4ed8; }
+  .human { background: #fef3c7; color: #92400e; }
+  .both { background: #ecfdf5; color: #065f46; }
+  .callout {
+    border-left: 4px solid #1e40af;
+    background: #eff6ff;
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+  }
+  .phase-header {
+    background: #0f172a;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+  .note { font-size: 13px; color: #64748b; }
+  hr { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+</style>
+</head>
+<body>
+
+<h1>Strategists SEO改善プロジェクト<br>実行プラン</h1>
+<p class="meta">
+  2026年3月11日 ｜ 対象: akagiconsulting.com/blog（WordPress / 144記事）<br>
+  後藤さん（SEOコンサル）× Claude（AI）× 社内チームの役割分担
+</p>
+
+<div class="callout">
+  <strong>このプランの考え方</strong><br>
+  Claudeが得意な「データ分析」「一括処理」「テンプレート実装」を最大限活用し、後藤さんと社内チームは「戦略判断」「コンテンツ品質」「外部施策」に集中する体制。
+</div>
+
+<!-- ===== 凡例 ===== -->
+<h2>役割の凡例</h2>
+<table>
+  <tr>
+    <td><span class="badge ai">Claude</span></td>
+    <td>データ取得・分析、WordPress一括操作、テンプレート実装、モニタリング自動化</td>
+  </tr>
+  <tr>
+    <td><span class="badge human">人間</span></td>
+    <td>戦略判断、コンテンツ執筆・レビュー、外部交渉、最終承認</td>
+  </tr>
+  <tr>
+    <td><span class="badge both">協業</span></td>
+    <td>Claudeが下準備 → 人間がレビュー・判断 → Claudeが実行</td>
+  </tr>
+</table>
+
+<!-- ===== Phase 0 ===== -->
+<div class="phase-header">Phase 0：現状把握（1週目）</div>
+<p>まず全体像を把握するデータを一気に揃える。全てClaude側で並列実行可能。</p>
+
+<table>
+  <tr><th style="width:40px">#</th><th>タスク</th><th style="width:80px">担当</th><th>アウトプット</th></tr>
+  <tr>
+    <td>0-1</td>
+    <td><strong>全144記事の振り分け表作成</strong><br>タイトル・現カテゴリ・主要流入KW・推奨新カテゴリ・URL変更有無</td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>スプレッドシート形式</td>
+  </tr>
+  <tr>
+    <td>0-2</td>
+    <td><strong>カニバリ記事の特定</strong><br>同一KWで複数記事がランクインしている組み合わせを洗い出し</td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>カニバリペア一覧</td>
+  </tr>
+  <tr>
+    <td>0-3</td>
+    <td><strong>2ページ目滞留KW全件リスト</strong><br>順位10〜20・表示100+のKWと対応記事URL</td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>KW×記事マッピング</td>
+  </tr>
+  <tr>
+    <td>0-4</td>
+    <td><strong>404エラー全件調査</strong><br>どのURLが404か、リダイレクト先の候補提案</td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>404一覧+対応案</td>
+  </tr>
+  <tr>
+    <td>0-5</td>
+    <td><strong>インデックス未登録URLの調査</strong><br>該当URL一覧とThin Content判定</td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>URL一覧+対応案</td>
+  </tr>
+  <tr>
+    <td>0-6</td>
+    <td><strong>内部リンク構造の可視化</strong><br>各記事の発リンク・被リンクを解析</td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>リンクマップ</td>
+  </tr>
+  <tr>
+    <td>0-7</td>
+    <td><strong>Core Web Vitals原因調査</strong><br>モバイルLCP 15.9秒のボトルネック特定</td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>改善ポイント一覧</td>
+  </tr>
+</table>
+
+<!-- ===== Phase 1 ===== -->
+<div class="phase-header">Phase 1：クイックウィン（2〜3週目）</div>
+<p>データが揃った段階で、リスクが低くインパクトの大きい施策から着手。</p>
+
+<table>
+  <tr><th style="width:40px">#</th><th>タスク</th><th style="width:80px">担当</th><th>詳細</th></tr>
+  <tr>
+    <td>1-1</td>
+    <td><strong>振り分け表のレビュー・確定</strong></td>
+    <td><span class="badge human">後藤さん</span></td>
+    <td>Claudeが作成した振り分け表をレビュー。判断が微妙な記事の最終カテゴリを決定</td>
+  </tr>
+  <tr>
+    <td>1-2</td>
+    <td><strong>404エラーの301リダイレクト設定</strong><br>（58件）</td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>.htaccessにリダイレクトルールを追加。後藤さん確認後に実行</td>
+  </tr>
+  <tr>
+    <td>1-3</td>
+    <td><strong>tag / page のnoindex設定</strong></td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>WordPressテーマテンプレートにnoindexメタタグ追加（tag: 45ページ/43クリック、page: 12ページ/1クリック）</td>
+  </tr>
+  <tr>
+    <td>1-4</td>
+    <td><strong>記事タイトル改善</strong><br>（シリーズ番号削除、検索意図ワード追加）</td>
+    <td><span class="badge both">協業</span></td>
+    <td>Claude: 改善案を一括生成 → 後藤さん: レビュー → Claude: WordPress一括反映</td>
+  </tr>
+  <tr>
+    <td>1-5</td>
+    <td><strong>画像WebP変換・圧縮</strong><br>（LCP改善の即効策）</td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>サーバー上で既存画像をWebPに変換、テーマのsrcsetを修正</td>
+  </tr>
+  <tr>
+    <td>1-6</td>
+    <td><strong>CSS/JS遅延読み込み設定</strong></td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>レンダリングブロックリソースを特定し、defer/async属性を追加</td>
+  </tr>
+</table>
+
+<!-- ===== Phase 2 ===== -->
+<div class="phase-header">Phase 2：カテゴリ再編（4〜6週目）</div>
+<p>構造変更の本体。段階的に実行し、Search Consoleで監視しながら進める。</p>
+
+<table>
+  <tr><th style="width:40px">#</th><th>タスク</th><th style="width:80px">担当</th><th>詳細</th></tr>
+  <tr>
+    <td>2-1</td>
+    <td><strong>新カテゴリ「コンサル転職 (career)」作成</strong></td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>WordPress CLI でカテゴリ作成 + タグ一括作成</td>
+  </tr>
+  <tr>
+    <td>2-2</td>
+    <td><strong>流入ゼロ記事から移行テスト</strong><br>（recommend/experiences → career）</td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>約11記事。リスクゼロなのでテスト移行に最適</td>
+  </tr>
+  <tr>
+    <td>2-3</td>
+    <td><strong>上位記事の段階移行</strong><br>（1日5記事ペース）</td>
+    <td><span class="badge both">協業</span></td>
+    <td>Claude: カテゴリ変更+301確認を実行 → 後藤さん: SC監視・問題時の判断</td>
+  </tr>
+  <tr>
+    <td>2-4</td>
+    <td><strong>旧カテゴリの削除</strong><br>（recommend, news, behavior, experiences）</td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>全記事移行完了後に実行</td>
+  </tr>
+  <tr>
+    <td>2-5</td>
+    <td><strong>Search Console モニタリング</strong></td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>移行期間中、毎日のインデックス状況・順位変動をレポート</td>
+  </tr>
+</table>
+
+<!-- ===== Phase 3 ===== -->
+<div class="phase-header">Phase 3：コンテンツ品質改善（5〜8週目）</div>
+<p>カテゴリ再編と並行して、記事単体の品質を上げていく。</p>
+
+<table>
+  <tr><th style="width:40px">#</th><th>タスク</th><th style="width:80px">担当</th><th>詳細</th></tr>
+  <tr>
+    <td>3-1</td>
+    <td><strong>2ページ目滞留KWの記事強化</strong><br>（タイトル・H1・冒頭300字・内部リンク）</td>
+    <td><span class="badge both">協業</span></td>
+    <td>Claude: 対象記事の改善案を生成 → 後藤さん: 方針決定 → Claude: 反映</td>
+  </tr>
+  <tr>
+    <td>3-2</td>
+    <td><strong>カニバリ記事の統合・差別化</strong></td>
+    <td><span class="badge both">協業</span></td>
+    <td>Claude: カニバリペアごとの統合案 → 後藤さん: どちらを残すか判断 → Claude: リダイレクト実行</td>
+  </tr>
+  <tr>
+    <td>3-3</td>
+    <td><strong>著者ボックス + JSON-LD追加</strong></td>
+    <td><span class="badge both">協業</span></td>
+    <td>Claude: テーマテンプレート実装 → 社内チーム: 監修者名・プロフィール・写真を提供</td>
+  </tr>
+  <tr>
+    <td>3-4</td>
+    <td><strong>CTA整理</strong><br>（誘導文削除、シンプルなLP導線に変更）</td>
+    <td><span class="badge both">協業</span></td>
+    <td>Claude: 全記事のCTA現状を一括抽出 → 後藤さん: 新CTA方針決定 → Claude: 一括置換</td>
+  </tr>
+  <tr>
+    <td>3-5</td>
+    <td><strong>YouTube埋め込みカードUI化</strong></td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>テキストリンク → サムネイル+タイトル表示のカードUIに変更</td>
+  </tr>
+  <tr>
+    <td>3-6</td>
+    <td><strong>新卒/中途のタグ分類・タイトル表記統一</strong></td>
+    <td><span class="badge both">協業</span></td>
+    <td>Claude: 対象記事リスト → 後藤さん: 分類方針 → Claude: タグ付与+タイトル変更</td>
+  </tr>
+</table>
+
+<!-- ===== Phase 4 ===== -->
+<div class="phase-header">Phase 4：内部リンク・ランディングページ（7〜10週目）</div>
+
+<table>
+  <tr><th style="width:40px">#</th><th>タスク</th><th style="width:80px">担当</th><th>詳細</th></tr>
+  <tr>
+    <td>4-1</td>
+    <td><strong>関連記事セクション追加</strong></td>
+    <td><span class="badge both">協業</span></td>
+    <td>Claude: テーマテンプレートに関連記事枠を実装 → 後藤さん: 主要記事のキュレーション方針</td>
+  </tr>
+  <tr>
+    <td>4-2</td>
+    <td><strong>パンくずリスト追加</strong></td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>テーマテンプレートにパンくず + JSON-LD BreadcrumbList を追加</td>
+  </tr>
+  <tr>
+    <td>4-3</td>
+    <td><strong>カテゴリまとめページ作成</strong><br>（4カテゴリ分）</td>
+    <td><span class="badge both">協業</span></td>
+    <td>Claude: テンプレートHTML実装 → 後藤さん: 記事の並び順・導入文の方針 → 社内チーム: 最終原稿</td>
+  </tr>
+  <tr>
+    <td>4-4</td>
+    <td><strong>内部リンクの体系的な追加</strong><br>（トピッククラスター構築）</td>
+    <td><span class="badge both">協業</span></td>
+    <td>Claude: リンク不足箇所を特定+リンク挿入 → 後藤さん: ピラーページの構成決定</td>
+  </tr>
+</table>
+
+<!-- ===== Phase 5 ===== -->
+<div class="phase-header">Phase 5：新規コンテンツ・継続改善（11週目〜）</div>
+
+<table>
+  <tr><th style="width:40px">#</th><th>タスク</th><th style="width:80px">担当</th><th>詳細</th></tr>
+  <tr>
+    <td>5-1</td>
+    <td><strong>新規記事KW選定</strong></td>
+    <td><span class="badge both">協業</span></td>
+    <td>Claude: KWリスト分析+競合ギャップ調査 → 後藤さん: 優先KW決定</td>
+  </tr>
+  <tr>
+    <td>5-2</td>
+    <td><strong>新規記事の構成案作成</strong></td>
+    <td><span class="badge both">協業</span></td>
+    <td>Claude: 上位記事の構成分析+構成案ドラフト → 後藤さん: レビュー → 社内チーム: 執筆</td>
+  </tr>
+  <tr>
+    <td>5-3</td>
+    <td><strong>記事フルリライト</strong></td>
+    <td><span class="badge human">社内+後藤さん</span></td>
+    <td>Claudeはリライト候補の優先順位付けとデータ提供まで。執筆判断は人間</td>
+  </tr>
+  <tr>
+    <td>5-4</td>
+    <td><strong>「コンサル業界 (industry)」カテゴリ追加</strong></td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>新規記事5本以上揃った段階でカテゴリ作成+移行</td>
+  </tr>
+  <tr>
+    <td>5-5</td>
+    <td><strong>月次SEOレポート自動生成</strong></td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>Search Console + GA4 APIで月次レポートを自動作成、チームに共有</td>
+  </tr>
+  <tr>
+    <td>5-6</td>
+    <td><strong>被リンク獲得施策</strong></td>
+    <td><span class="badge human">後藤さん</span></td>
+    <td>外部メディアとの交渉・関係構築</td>
+  </tr>
+</table>
+
+<hr>
+
+<!-- ===== まとめ ===== -->
+<h2>Claudeを活用するメリット</h2>
+
+<table>
+  <tr><th>従来（人力のみ）</th><th>Claude併用</th></tr>
+  <tr>
+    <td>準備段階 80〜100時間（1.5〜2ヶ月）</td>
+    <td>Phase 0 を数時間で完了。データ分析は即日</td>
+  </tr>
+  <tr>
+    <td>簡易リライト 1本30分 × 200本 = 100時間</td>
+    <td>タイトル改善案の一括生成 → レビューのみに集中</td>
+  </tr>
+  <tr>
+    <td>カテゴリ変更 手動で1記事ずつ</td>
+    <td>WordPress CLI で一括処理 + 301自動確認</td>
+  </tr>
+  <tr>
+    <td>SEO分析 月20〜30時間</td>
+    <td>Search Console / GA4 API で自動レポート</td>
+  </tr>
+</table>
+
+<p class="note" style="margin-top:8px;">
+  ※ Claudeは SSH経由でWordPressを直接操作でき、Search Console / GA4 の APIにもアクセス済みです。<br>
+  ※ 後藤さんの専門知識による戦略判断と、Claudeの大量データ処理・自動実行を組み合わせることで、通常数ヶ月かかるプロジェクトを大幅に圧縮できます。
+</p>
+
+<hr>
+
+<h2>次のアクション</h2>
+<ol>
+  <li><strong>本プランの合意</strong> — 後藤さん・社内チームでフェーズ分け・優先順位を確認</li>
+  <li><strong>Phase 0 開始</strong> — 合意後すぐにClaudeが7つの調査を並列実行（所要: 数時間）</li>
+  <li><strong>Phase 0 結果のレビュー</strong> — 後藤さんがデータを確認し、Phase 1以降の詳細を決定</li>
+</ol>
+
+<p class="meta" style="margin-top:40px;">— 以上 —</p>
+
+</body>
+</html>
