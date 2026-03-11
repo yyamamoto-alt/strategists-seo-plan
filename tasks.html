@@ -79,6 +79,12 @@
   結果として、従来のSEOコンサルティングと比較して<strong>大幅なコスト圧縮と施策スピードの向上</strong>が見込めるのではないかと考えています。
 </p>
 
+<div class="callout">
+  <strong>プロジェクト期間：3ヶ月</strong><br>
+  AIによる実装の並列処理を活かし、施策の実施を3ヶ月間に集中して行う想定です。<br>
+  SEOの性質上、施策の効果がオーガニック流入やCVに安定して現れるのは完了後3〜4ヶ月程度かかりますが、施策自体は短期間で完了させることで、早期に効果が積み上がり始める状態を目指します。
+</div>
+
 <!-- ===== 効率化比較 ===== -->
 <h2>従来のやり方 vs Claude活用</h2>
 
@@ -177,7 +183,7 @@
 <h2>想定される施策と役割分担の例</h2>
 <p>具体的にどんな施策を、どう分担できそうかのイメージです。</p>
 
-<div class="phase-header">データ分析・戦略策定</div>
+<div class="phase-header">1ヶ月目：データ分析・戦略策定 + テクニカルSEO</div>
 
 <table>
   <tr><th>施策</th><th style="width:110px">担当</th><th>内容</th></tr>
@@ -195,12 +201,6 @@
       主要競合の構造・CTA・E-E-A-T調査。Claudeの分析データと組み合わせてKW攻略方針を策定
     </td>
   </tr>
-</table>
-
-<div class="phase-header">テクニカルSEO</div>
-
-<table>
-  <tr><th>施策</th><th style="width:110px">担当</th><th>内容</th></tr>
   <tr>
     <td><strong>テクニカル修正の実装</strong></td>
     <td><span class="badge ai">Claude</span></td>
@@ -215,9 +215,18 @@
       PageSpeed Insightsでのスコア確認、リダイレクト動作確認、GSCの変化確認。問題があればClaudeに修正指示
     </td>
   </tr>
+  <tr>
+    <td><strong>カテゴリ再編</strong></td>
+    <td>
+      <span class="badge goto">後藤さん</span> → <span class="badge ai">Claude</span>
+    </td>
+    <td>
+      後藤さんが振り分け方針を決定 → Claudeがカテゴリ変更・リダイレクトを一括実行、順位変動をモニタリング
+    </td>
+  </tr>
 </table>
 
-<div class="phase-header">コンテンツ改善</div>
+<div class="phase-header">2ヶ月目：コンテンツ改善 + サイト構造強化</div>
 
 <table>
   <tr><th>施策</th><th style="width:110px">担当</th><th>内容</th></tr>
@@ -240,25 +249,6 @@
     </td>
   </tr>
   <tr>
-    <td><strong>カテゴリ再編</strong></td>
-    <td>
-      <span class="badge goto">後藤さん</span> → <span class="badge ai">Claude</span>
-    </td>
-    <td>
-      後藤さんが振り分け方針を決定、移行の進捗管理・判断 → Claudeがカテゴリ変更・リダイレクトを一括実行
-    </td>
-  </tr>
-  <tr>
-    <td><strong>記事リライト・新規記事</strong></td>
-    <td>
-      <span class="badge goto">後藤さん</span><br>
-      <span class="badge komaki">小牧さん</span>
-    </td>
-    <td>
-      後藤さんが対象選定・方針策定、小牧さんがコンテンツの正確性・専門性をチェック。Claudeは下書き生成・実装を担当
-    </td>
-  </tr>
-  <tr>
     <td><strong>E-E-A-T強化</strong></td>
     <td>
       <span class="badge goto">後藤さん</span> → <span class="badge ai">Claude</span>
@@ -267,12 +257,6 @@
       後藤さんが著者ボックス・監修者情報の設計 → Claudeがテーマテンプレート + JSON-LD構造化データを実装
     </td>
   </tr>
-</table>
-
-<div class="phase-header">サイト構造強化</div>
-
-<table>
-  <tr><th>施策</th><th style="width:110px">担当</th><th>内容</th></tr>
   <tr>
     <td><strong>トピッククラスター設計・内部リンク</strong></td>
     <td>
@@ -293,24 +277,34 @@
   </tr>
 </table>
 
-<div class="phase-header">継続改善</div>
+<div class="phase-header">3ヶ月目：新規コンテンツ + 仕上げ・効果測定</div>
 
 <table>
   <tr><th>施策</th><th style="width:110px">担当</th><th>内容</th></tr>
   <tr>
-    <td><strong>月次レポート</strong></td>
-    <td><span class="badge ai">Claude</span></td>
-    <td>GSC + GA4 APIで自動生成</td>
-  </tr>
-  <tr>
-    <td><strong>効果測定・戦略調整</strong></td>
-    <td><span class="badge goto">後藤さん</span></td>
-    <td>レポートをもとにKPIの進捗確認、施策の効果分析、優先度の見直し</td>
+    <td><strong>記事リライト・新規記事</strong></td>
+    <td>
+      <span class="badge goto">後藤さん</span><br>
+      <span class="badge komaki">小牧さん</span>
+    </td>
+    <td>
+      後藤さんが対象選定・方針策定、小牧さんがコンテンツの正確性・専門性をチェック。Claudeは下書き生成・実装を担当
+    </td>
   </tr>
   <tr>
     <td><strong>被リンク獲得</strong></td>
     <td><span class="badge goto">後藤さん</span></td>
     <td>外部メディアとの関係構築、ゲスト記事・PR記事の企画</td>
+  </tr>
+  <tr>
+    <td><strong>効果測定・全体レビュー</strong></td>
+    <td><span class="badge goto">後藤さん</span></td>
+    <td>3ヶ月間の施策の効果分析、KPI進捗確認、今後の運用方針の整理</td>
+  </tr>
+  <tr>
+    <td><strong>月次レポート</strong></td>
+    <td><span class="badge ai">Claude</span></td>
+    <td>GSC + GA4 APIで自動生成</td>
   </tr>
 </table>
 
@@ -318,19 +312,29 @@
 
 <!-- ===== KPI ===== -->
 <h2>目標イメージ</h2>
+
+<h3>プロジェクト完了時（3ヶ月後）</h3>
 <table>
-  <tr><th>指標</th><th>現状</th><th>3ヶ月後</th><th>6ヶ月後</th></tr>
-  <tr><td>モバイルLCP</td><td>15.9秒</td><td>2.5秒以下</td><td>維持</td></tr>
-  <tr><td>インデックス率</td><td>42%</td><td>70%以上</td><td>80%以上</td></tr>
-  <tr><td>「ケース面接」順位</td><td>30位前後</td><td>15位以内</td><td>10位以内</td></tr>
-  <tr><td>月間オーガニック流入</td><td>約5,000/月</td><td>7,500</td><td>10,000</td></tr>
+  <tr><th>指標</th><th>現状</th><th>3ヶ月後（施策完了時）</th></tr>
+  <tr><td>モバイルLCP</td><td>15.9秒</td><td>2.5秒以下</td></tr>
+  <tr><td>インデックス率</td><td>42%</td><td>70%以上</td></tr>
+  <tr><td>「ケース面接」順位</td><td>30位前後</td><td>15位以内</td></tr>
+  <tr><td>月間オーガニック流入</td><td>約5,000/月</td><td>7,500</td></tr>
+</table>
+
+<h3>効果安定期（施策完了後〜）</h3>
+<p class="note">※ SEOの性質上、施策の効果がオーガニック流入やCVに安定して現れるまでには3〜4ヶ月程度かかります。以下はプロジェクト完了後も含めた見通しです。</p>
+<table>
+  <tr><th>指標</th><th>6〜7ヶ月後（効果安定期）</th></tr>
+  <tr><td>インデックス率</td><td>80%以上</td></tr>
+  <tr><td>「ケース面接」順位</td><td>10位以内</td></tr>
+  <tr><td>月間オーガニック流入</td><td>10,000</td></tr>
 </table>
 
 <h3>CV目標（SEO経由の問い合わせ・申込み）</h3>
-<p class="note">※ 当初の想定より2ヶ月程度前倒しのイメージ。テクニカル改善+カテゴリ再編の効果が早期に出る前提。</p>
 <table>
   <tr><th>時期</th><th>CV目標（月間）</th><th>備考</th></tr>
-  <tr><td>3ヶ月目</td><td>0〜2件</td><td>テクニカル改善+カテゴリ再編の効果が出始める</td></tr>
+  <tr><td>3ヶ月目<br><span class="note">（プロジェクト完了）</span></td><td>0〜2件</td><td>テクニカル改善+カテゴリ再編の効果が出始める</td></tr>
   <tr><td>4ヶ月目</td><td>5件</td><td>CTA改善+内部リンク強化の効果</td></tr>
   <tr><td>5〜6ヶ月目</td><td>7〜8件</td><td>コンテンツ改善+新規記事の流入が加わる</td></tr>
   <tr><td>7ヶ月目</td><td>10件</td><td>全施策の複合効果が安定</td></tr>
