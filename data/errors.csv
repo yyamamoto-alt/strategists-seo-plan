@@ -1,0 +1,25 @@
+﻿404URL,問題の種別,Google認識ステータス,SC表示回数(90日),SCクリック数(90日),推定リダイレクト先,理由
+https://akagiconsulting.com/blog/uncategorized/1270/,カテゴリ変更（旧URLがGoogleにインデックス済）,Submitted and indexed (旧URLのまま),9838,349,https://akagiconsulting.com/blog/information/1270/,uncategorized→informationにカテゴリ変更済み。旧URLがGoogleに残存。301リダイレクト設定推奨（SEO価値引き継ぎ）
+https://akagiconsulting.com/blog/information/2073/,Crawled but not indexed,Crawled - currently not indexed,253,3,（リダイレクト不要。インデックス促進が必要）,公開記事だがGoogleがインデックスしていない。コンテンツ品質・内部リンク強化推奨
+https://akagiconsulting.com/blog/case-interview/1099/,Crawled but not indexed,Crawled - currently not indexed,122,4,（リダイレクト不要。インデックス促進が必要）,公開記事だがGoogleがインデックスしていない。内部リンク追加・コンテンツ充実推奨
+https://akagiconsulting.com/?utm_source=google&utm_medium=mybusinesss,UTMパラメータ付き重複URL,URL is unknown to Google,118,1,https://akagiconsulting.com/,Googleビジネスプロフィールからのリンク。utm_mediumのタイポ（mybusinesss→mybusiness）あり。canonical設定で正規化推奨
+https://akagiconsulting.com/voice/nitta/,Crawled but not indexed,Crawled - currently not indexed,111,5,（リダイレクト不要。インデックス促進が必要）,卒業生インタビュー。Googleがインデックスしていない。内部リンク追加推奨
+https://akagiconsulting.com/blog/tag/%E8%BB%A2%E8%81%B7/,タグ/カテゴリページ（Crawled not indexed）,Crawled - currently not indexed,37,1,https://akagiconsulting.com/blog/,タグ/カテゴリ「転職」。低品質ページとしてnoindex設定またはブログトップへリダイレクト推奨
+https://akagiconsulting.com/blog/case-interview/2405/,Crawled but not indexed,Crawled - currently not indexed,27,1,（リダイレクト不要。インデックス促進が必要）,新記事。Googleがまだインデックスしていない。Search Consoleからインデックス登録リクエスト推奨
+https://akagiconsulting.com/blog/tag/%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%B3%E3%83%89%E3%83%99%E3%83%AB%E3%82%AC%E3%83%BC/,タグ/カテゴリページ（Crawled not indexed）,Crawled - currently not indexed,13,1,https://akagiconsulting.com/blog/,タグ/カテゴリ「ローランドベルガー」。低品質ページとしてnoindex設定またはブログトップへリダイレクト推奨
+https://akagiconsulting.com/blog/case-interview/2467/,Crawled but not indexed,Crawled - currently not indexed,9,2,（リダイレクト不要。インデックス促進が必要）,新記事。Googleがまだインデックスしていない。Search Consoleからインデックス登録リクエスト推奨
+https://akagiconsulting.com/blog/tag/%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF/,タグ/カテゴリページ（Crawled not indexed）,Crawled - currently not indexed,4,0,https://akagiconsulting.com/blog/,タグ/カテゴリ「フレームワーク」。低品質ページとしてnoindex設定またはブログトップへリダイレクト推奨
+https://akagiconsulting.com/blog/page/14/?cat=0,ページネーション（not indexed）,Crawled - currently not indexed / Alternate canonical,4,0,https://akagiconsulting.com/blog/,ページネーション。通常はインデックス不要。?cat=0パラメータ付きURLはcanonical設定で処理済み
+https://akagiconsulting.com/blog/case-interview/537,末尾スラッシュなし（URL正規化問題）,URL is unknown to Google,4,0,https://akagiconsulting.com/blog/case-interview/537/,末尾スラッシュなしでSCに記録。.htaccessで末尾スラッシュ付きへ301リダイレクト推奨
+https://akagiconsulting.com/blog/case-interview/2472/,Crawled but not indexed,Crawled - currently not indexed,3,0,（リダイレクト不要。インデックス促進が必要）,新記事。Googleがまだインデックスしていない。Search Consoleからインデックス登録リクエスト推奨
+https://akagiconsulting.com/blog/tag/%E4%BC%81%E6%A5%AD%E7%A0%94%E7%A9%B6/,タグ/カテゴリページ（Crawled not indexed）,Crawled - currently not indexed,2,0,https://akagiconsulting.com/blog/,タグ/カテゴリ「企業研究」。低品質ページとしてnoindex設定またはブログトップへリダイレクト推奨
+https://akagiconsulting.com/blog/tag/%E5%AF%8C%E5%A3%AB%E9%80%9A%E7%B7%8F%E7%A0%94/,404 (HTTP 404),Not found (404),1,0,https://akagiconsulting.com/blog/,タグ「富士通総研」が削除されている。ブログトップへリダイレクト推奨
+https://akagiconsulting.com/blog/category/experiences/,タグ/カテゴリページ（Crawled not indexed）,Crawled - currently not indexed,1,0,https://akagiconsulting.com/blog/,タグ/カテゴリ「experiencesカテゴリ」。低品質ページとしてnoindex設定またはブログトップへリダイレクト推奨
+https://akagiconsulting.com/blog/page/11/,ページネーション（not indexed）,Crawled - currently not indexed / Alternate canonical,1,0,https://akagiconsulting.com/blog/,ページネーション。通常はインデックス不要。?cat=0パラメータ付きURLはcanonical設定で処理済み
+https://akagiconsulting.com/blog/page/12/,ページネーション（not indexed）,Crawled - currently not indexed / Alternate canonical,1,0,https://akagiconsulting.com/blog/,ページネーション。通常はインデックス不要。?cat=0パラメータ付きURLはcanonical設定で処理済み
+https://akagiconsulting.com/blog/wp-content/uploads/2025/08/image-1.png,画像URL（未インデックス）,URL is unknown to Google,1,0,（対応不要）,画像ファイル。対応不要
+https://akagiconsulting.com/blog/information/2373/,非公開記事（Googleが404認識）,Not found (404),0,0,https://akagiconsulting.com/blog/category/information/,非公開(private)記事「野村総合研究所（NRI）の選考プロセスと各部門の業務内容を徹底解説！」。公開予定なら公開に変更、不要なら企業研究カテゴリへリダイレクト
+https://akagiconsulting.com/blog/information/2378/,非公開記事（Googleが404認識）,Not found (404),0,0,https://akagiconsulting.com/blog/category/information/,非公開(private)記事「日本総合研究所（JRI）の選考プロセスと各部門の業務内容を徹底解説！」。公開予定なら公開に変更、不要なら企業研究カテゴリへリダイレクト
+https://akagiconsulting.com/blog/information/2383/,非公開記事（Googleが404認識）,Not found (404),0,0,https://akagiconsulting.com/blog/category/information/,非公開(private)記事「みずほリサーチ&テクノロジーズの選考プロセスと各部門の業務内容を徹底解説！」。公開予定なら公開に変更、不要なら企業研究カテゴリへリダイレクト
+https://akagiconsulting.com/blog/information/2385/,非公開記事（Googleが404認識）,Not found (404),0,0,https://akagiconsulting.com/blog/category/information/,非公開(private)記事「大和総研の選考プロセスと各部門の業務内容を徹底解説！」。公開予定なら公開に変更、不要なら企業研究カテゴリへリダイレクト
+https://akagiconsulting.com/blog/information/2388/,非公開記事（Googleが404認識）,Not found (404),0,0,https://akagiconsulting.com/blog/category/information/,非公開(private)記事「電通総研の選考プロセスと各部門の業務内容を徹底解説！」。公開予定なら公開に変更、不要なら企業研究カテゴリへリダイレクト

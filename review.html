@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO調査データ レビュー</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    line-height: 1.7;
+    font-size: 14px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+  /* Header */
+  .page-header {
+    background: #0f172a;
+    color: white;
+    padding: 32px 24px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+  }
+  .page-header h1 { font-size: 22px; margin-bottom: 8px; }
+  .page-header p { font-size: 14px; color: #94a3b8; }
+
+  /* How to use */
+  .howto {
+    background: #eff6ff;
+    border-left: 4px solid #3b82f6;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+  }
+  .howto h2 { font-size: 16px; color: #1e40af; margin-bottom: 8px; }
+  .howto ol { padding-left: 20px; }
+  .howto li { margin: 4px 0; }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    padding: 10px 16px;
+    border: none;
+    background: #f1f5f9;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 8px 8px 0 0;
+    color: #64748b;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab-btn:hover { background: #e2e8f0; }
+  .tab-btn.active { background: white; color: #1e40af; border-bottom: 2px solid white; margin-bottom: -2px; }
+
+  /* Tab content */
+  .tab-content { display: none; background: white; padding: 24px; border-radius: 0 0 12px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .tab-content.active { display: block; }
+
+  /* Section description */
+  .section-desc {
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    border: 1px solid #e2e8f0;
+  }
+  .section-desc h3 { font-size: 15px; color: #1e40af; margin-bottom: 8px; }
+  .section-desc .label { font-weight: 600; color: #475569; }
+
+  /* Data tables */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .data-table th {
+    background: #0f172a;
+    color: white;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .data-table th.review-col {
+    background: #f59e0b;
+    color: #1e293b;
+  }
+  .data-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: top;
+  }
+  .data-table tr:hover { background: #f8fafc; }
+  .data-table .url { font-size: 11px; color: #64748b; word-break: break-all; }
+  .data-table .kw { font-weight: 600; color: #1e40af; }
+  .data-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .data-table .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .tag-change { background: #fef3c7; color: #92400e; }
+  .tag-nochange { background: #dcfce7; color: #166534; }
+  .tag-high { background: #fecaca; color: #991b1b; }
+  .tag-medium { background: #fef3c7; color: #92400e; }
+  .tag-low { background: #e0e7ff; color: #3730a3; }
+
+  /* Editable cells */
+  .review-cell {
+    background: #fffbeb !important;
+  }
+  .review-cell select, .review-cell textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 13px;
+    border: 1px solid #d4d4d8;
+    border-radius: 4px;
+    padding: 4px 6px;
+    background: white;
+  }
+  .review-cell select { height: 30px; }
+  .review-cell textarea {
+    min-height: 50px;
+    resize: vertical;
+  }
+
+  /* Scroll wrapper */
+  .table-wrap {
+    overflow-x: auto;
+    max-height: 600px;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+
+  /* Action bar */
+  .action-bar {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+  }
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: #1e40af; color: white; }
+  .btn-primary:hover { background: #1e3a8a; }
+  .btn-secondary { background: #f1f5f9; color: #475569; }
+  .btn-secondary:hover { background: #e2e8f0; }
+
+  /* Progress */
+  .progress-bar {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+  .progress-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .progress-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .dot-done { background: #22c55e; }
+  .dot-partial { background: #f59e0b; }
+  .dot-none { background: #d4d4d8; }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #0f172a;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    z-index: 1000;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+
+  /* Count badge */
+  .count-badge {
+    display: inline-block;
+    background: #e2e8f0;
+    color: #475569;
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    margin-left: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="page-header">
+    <h1>SEO調査データ レビュー</h1>
+    <p>akagiconsulting.com/blog ｜ AI（Claude Code）がAPI経由で取得・分析したデータです</p>
+  </div>
+
+  <div class="howto">
+    <h2>使い方</h2>
+    <ol>
+      <li>各タブのデータをご確認ください</li>
+      <li>黄色のセル（確認・コメント欄）にご判断やご意見を入力してください</li>
+      <li>入力が終わったら <strong>「レビュー結果を保存」</strong> ボタンを押してください（JSONファイルがダウンロードされます）</li>
+      <li>ダウンロードされたファイルを山本までお送りください。Claude Codeに読み込ませてサイトに反映します</li>
+    </ol>
+  </div>
+
+  <div class="progress-bar" id="progressBar"></div>
+
+  <div class="tabs" id="tabs"></div>
+  <div id="tabContents"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== Data =====
+const TABS = [
+  {
+    id: "articles",
+    label: "記事振り分け表",
+    count: 0,
+    desc: {
+      title: "記事振り分け表 — 全144記事のカテゴリ再編案",
+      purpose: "現在の8カテゴリを4カテゴリ（case-interview / fermi-estimate / information / career）に再編するための振り分け案です。",
+      howto: "「推奨新カテゴリ」列がAIの提案です。主要流入KW（Search Consoleの上位3クエリ）をもとに判断しています。",
+      ask: "「確認」列で OK / 変更 を選択してください。変更の場合は「コメント」欄に理由や変更先をお書きください。特に「URL変更あり」の記事は順位影響があるため、慎重なご判断をお願いします。"
+    },
+    reviewFields: [
+      { key: "confirm", label: "確認", type: "select", options: ["", "OK", "変更"] },
+      { key: "comment", label: "コメント", type: "textarea" }
+    ]
+  },
+  {
+    id: "cannibalization",
+    label: "カニバリ分析",
+    count: 0,
+    desc: {
+      title: "カニバリ分析 — 同じKWで競合している記事ペア",
+      purpose: "同じ検索キーワードに対して複数の記事がランクインし、Googleの評価が分散している状態（カニバリゼーション）を特定しています。",
+      howto: "1行=1つのKW。URL_1とURL_2が同じKWで競合しているペアです。「推奨」列にAIの判断を記載しています。",
+      ask: "「確認」列で OK / 変更 を選択してください。統合・リダイレクト・canonical等の対応方針も「コメント」欄にお書きください。"
+    },
+    reviewFields: [
+      { key: "confirm", label: "確認", type: "select", options: ["", "OK", "変更"] },
+      { key: "comment", label: "コメント", type: "textarea" }
+    ]
+  },
+  {
+    id: "page2kw",
+    label: "2ページ目KW",
+    count: 0,
+    desc: {
+      title: "2ページ目KW — あと少しで検索1ページ目に入れるキーワード",
+      purpose: "現在Google検索で11〜20位（2ページ目）に滞留しているKWです。少しの改善で1ページ目に押し上げられる「お宝KW」の候補。",
+      howto: "表示回数が多いのにクリックが少ないKWは、順位改善の効果が大きい対象です。「改善メモ」列にAIの所感を記載しています。",
+      ask: "「優先度」列で 高 / 中 / 低 を選択してください。改善方針があれば「コメント」欄にお書きください。"
+    },
+    reviewFields: [
+      { key: "priority", label: "優先度", type: "select", options: ["", "高", "中", "低"] },
+      { key: "comment", label: "コメント", type: "textarea" }
+    ]
+  },
+  {
+    id: "internal-links",
+    label: "内部リンク分析",
+    count: 0,
+    desc: {
+      title: "内部リンク分析 — 各記事の発リンク・被リンク数",
+      purpose: "内部リンクの過不足を可視化しています。被リンク0の「孤立記事」はGoogleに見つけてもらいにくく、SEO上不利です。",
+      howto: "被リンク数が0の記事は、他の関連記事からリンクを追加すべき対象です。発リンクが0の記事も、関連記事へのリンク追加が有効。",
+      ask: "特に重要な記事で孤立しているものがあれば「コメント」欄でお知らせください。リンク追加はClaudeで一括実行します。"
+    },
+    reviewFields: [
+      { key: "comment", label: "コメント", type: "textarea" }
+    ]
+  },
+  {
+    id: "not-indexed",
+    label: "インデックス未登録",
+    count: 0,
+    desc: {
+      title: "インデックス未登録URL — Googleに認識されていないページ",
+      purpose: "Search Consoleのデータから、Googleにインデックスされていない（検索結果に出ない）URLを抽出しています。",
+      howto: "「推奨対応」列にAIの提案を記載。noindex推奨のものは検索エンジンへの露出を意図的に止める提案です。",
+      ask: "各URLの「対応」列で方針を決めてください（noindex / 改善 / 削除 / 対応不要）。"
+    },
+    reviewFields: [
+      { key: "action", label: "対応", type: "select", options: ["", "noindex", "改善", "削除", "対応不要"] },
+      { key: "comment", label: "コメント", type: "textarea" }
+    ]
+  },
+  {
+    id: "errors",
+    label: "404調査",
+    count: 0,
+    desc: {
+      title: "404調査 — エラーページ・リダイレクト設定が必要なURL",
+      purpose: "Search Consoleで検出された404エラー、未インデックスURL、リダイレクト設定漏れ等を調査した結果です。",
+      howto: "「推定リダイレクト先」列にAIが提案するリダイレクト先を記載。「理由」列に詳しい背景を書いています。",
+      ask: "リダイレクト先が適切かご確認ください。「承認」列で OK / 変更 を選択、変更の場合は「コメント」欄に正しいリダイレクト先をお書きください。"
+    },
+    reviewFields: [
+      { key: "confirm", label: "承認", type: "select", options: ["", "OK", "変更", "対応不要"] },
+      { key: "comment", label: "コメント", type: "textarea" }
+    ]
+  },
+  {
+    id: "cwv",
+    label: "CWV調査",
+    count: 0,
+    desc: {
+      title: "Core Web Vitals — LCP 15.9秒の原因と改善案",
+      purpose: "モバイルでのLCP（Largest Contentful Paint）が15.9秒と非常に遅い原因を調査し、改善案をまとめました。",
+      howto: "優先度順に改善ポイントを並べています。優先度1〜3だけで5〜8秒程度への短縮が見込めます。",
+      ask: "各施策の「承認」列で OK / 保留 / 不要 を選択してください。Cocoonテーマやプラグイン構成に影響するものは慎重にご判断ください。"
+    },
+    reviewFields: [
+      { key: "confirm", label: "承認", type: "select", options: ["", "OK", "保留", "不要"] },
+      { key: "comment", label: "コメント", type: "textarea" }
+    ]
+  }
+];
+
+// Store all review data
+let reviewData = {};
+
+// Try to load saved data from localStorage
+try {
+  const saved = localStorage.getItem("seo-review-data");
+  if (saved) reviewData = JSON.parse(saved);
+} catch(e) {}
+
+// CSV data will be embedded inline
+const CSV_DATA = {};
+
+// Parse CSV string
+function parseCSV(text) {
+  const lines = [];
+  let current = "";
+  let inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === '"') {
+      if (inQuotes && text[i+1] === '"') { current += '"'; i++; }
+      else { inQuotes = !inQuotes; }
+    } else if (ch === ',' && !inQuotes) {
+      lines.push(current);
+      current = "";
+    } else if ((ch === '\n' || ch === '\r') && !inQuotes) {
+      if (current || lines.length) { lines.push(current); }
+      if (lines.length) {
+        if (!parseCSV._result) parseCSV._result = [];
+        parseCSV._result.push([...lines]);
+        lines.length = 0;
+      }
+      current = "";
+      if (ch === '\r' && text[i+1] === '\n') i++;
+    } else {
+      current += ch;
+    }
+  }
+  if (current || lines.length) { lines.push(current); parseCSV._result.push([...lines]); }
+  const result = parseCSV._result || [];
+  parseCSV._result = null;
+  return result;
+}
+
+function parseCSVText(text) {
+  parseCSV._result = null;
+  parseCSV(text);
+  // Simpler approach
+  const rows = [];
+  let row = [];
+  let cell = "";
+  let inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (c === '"') {
+      if (inQ && text[i+1] === '"') { cell += '"'; i++; }
+      else inQ = !inQ;
+    } else if (c === ',' && !inQ) {
+      row.push(cell); cell = "";
+    } else if ((c === '\n' || c === '\r') && !inQ) {
+      row.push(cell); cell = "";
+      if (row.some(x => x)) rows.push(row);
+      row = [];
+      if (c === '\r' && text[i+1] === '\n') i++;
+    } else {
+      cell += c;
+    }
+  }
+  if (cell || row.length) { row.push(cell); rows.push(row); }
+  return rows;
+}
+
+// Load CSV files via fetch (relative paths on GitHub Pages)
+async function loadData() {
+  const files = {
+    articles: "data/articles.csv",
+    cannibalization: "data/cannibalization.csv",
+    page2kw: "data/page2kw.csv",
+    "internal-links": "data/internal-links.csv",
+    "not-indexed": "data/not-indexed.csv",
+    errors: "data/errors.csv",
+  };
+
+  for (const [key, path] of Object.entries(files)) {
+    try {
+      const resp = await fetch(path);
+      const text = await resp.text();
+      const rows = parseCSVText(text);
+      CSV_DATA[key] = { headers: rows[0], rows: rows.slice(1) };
+      const tab = TABS.find(t => t.id === key);
+      if (tab) tab.count = rows.length - 1;
+    } catch(e) {
+      console.error(`Failed to load ${path}:`, e);
+      CSV_DATA[key] = { headers: [], rows: [] };
+    }
+  }
+
+  // CWV is hardcoded
+  CSV_DATA.cwv = {
+    headers: ["優先度", "施策", "詳細", "見込み効果", "難易度"],
+    rows: [
+      ["1", "キャッシュプラグイン導入", "WP Super Cache等を導入。HTMLページキャッシュが一切ない状態", "LCP -3〜5秒", "低"],
+      ["2", "画像最適化", "EWWW Image Optimizer導入、既存画像の一括WebP変換（現在WebP率10%）", "LCP -2〜4秒", "低"],
+      ["3", "TypeSquare Webフォント無効化", "Xserver Webフォントが外部リソースとしてFOITを引き起こしている", "LCP -1〜2秒", "低"],
+      ["4", "Elementorアセット最適化", "75MBのプラグインから大量JS/CSSが全ページで読み込まれる", "LCP -1〜3秒", "中"],
+      ["5", "Popup Maker遅延読み込み", "ポップアップ用CSS/JSがレンダリングブロック", "LCP -0.5〜1秒", "低"],
+      ["6", "Critical CSS導入", "Cocoon style.css 237KBが非圧縮で<head>に読み込まれている", "LCP -1〜2秒", "中"],
+      ["7", "不要プラグイン整理", "jonradio-multiple-themes等を無効化", "LCP -0.5秒", "低"],
+    ]
+  };
+  TABS.find(t => t.id === "cwv").count = 7;
+
+  renderAll();
+}
+
+function renderAll() {
+  renderTabs();
+  renderContents();
+  updateProgress();
+  // Activate first tab
+  document.querySelector(".tab-btn").click();
+}
+
+function renderTabs() {
+  const container = document.getElementById("tabs");
+  container.innerHTML = TABS.map(tab =>
+    `<button class="tab-btn" data-tab="${tab.id}">${tab.label}<span class="count-badge">${tab.count}</span></button>`
+  ).join("");
+
+  container.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      container.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+      document.getElementById(`tab-${btn.dataset.tab}`).classList.add("active");
+    });
+  });
+}
+
+function renderContents() {
+  const container = document.getElementById("tabContents");
+  container.innerHTML = TABS.map(tab => {
+    const data = CSV_DATA[tab.id];
+    if (!data) return "";
+
+    const desc = `<div class="section-desc">
+      <h3>${tab.desc.title}</h3>
+      <p><span class="label">目的:</span> ${tab.desc.purpose}</p>
+      <p><span class="label">見方:</span> ${tab.desc.howto}</p>
+      <p><span class="label">お願い:</span> ${tab.desc.ask}</p>
+    </div>`;
+
+    // Build table
+    const reviewCols = tab.reviewFields.map(f => `<th class="review-col">${f.label}</th>`).join("");
+    const headerRow = data.headers.map(h => `<th>${h}</th>`).join("") + reviewCols;
+
+    const bodyRows = data.rows.map((row, idx) => {
+      const dataCells = row.map((cell, ci) => {
+        // Style specific columns
+        let cls = "";
+        if (tab.id === "articles") {
+          if (ci === 6 && cell === "あり") return `<td><span class="tag tag-change">あり</span></td>`;
+          if (ci === 6 && cell === "なし") return `<td><span class="tag tag-nochange">なし</span></td>`;
+          if (ci === 2) return `<td class="url">${cell}</td>`;
+        }
+        if (tab.id === "cannibalization") {
+          if (ci === 0) return `<td class="kw">${cell}</td>`;
+          if (ci === 1 || ci === 4) return `<td class="url">${cell}</td>`;
+          if (ci === 2 || ci === 5) return `<td class="num">${cell}</td>`;
+          if (ci === 3 || ci === 6) return `<td class="num">${cell}</td>`;
+        }
+        if (tab.id === "page2kw") {
+          if (ci === 0) return `<td class="kw">${cell}</td>`;
+          if (ci === 1) return `<td class="url">${cell}</td>`;
+          if (ci >= 2 && ci <= 5) return `<td class="num">${cell}</td>`;
+        }
+        if (tab.id === "not-indexed" || tab.id === "errors") {
+          if (ci === 0) return `<td class="url">${cell}</td>`;
+        }
+        return `<td>${cell}</td>`;
+      }).join("");
+
+      const reviewCells = tab.reviewFields.map(f => {
+        const savedVal = (reviewData[tab.id] && reviewData[tab.id][idx] && reviewData[tab.id][idx][f.key]) || "";
+        if (f.type === "select") {
+          const opts = f.options.map(o => `<option value="${o}" ${o === savedVal ? "selected" : ""}>${o || "---"}</option>`).join("");
+          return `<td class="review-cell"><select data-tab="${tab.id}" data-row="${idx}" data-field="${f.key}" onchange="onReviewChange(this)">${opts}</select></td>`;
+        } else {
+          return `<td class="review-cell"><textarea data-tab="${tab.id}" data-row="${idx}" data-field="${f.key}" oninput="onReviewChange(this)" placeholder="...">${savedVal}</textarea></td>`;
+        }
+      }).join("");
+
+      return `<tr>${dataCells}${reviewCells}</tr>`;
+    }).join("");
+
+    return `<div class="tab-content" id="tab-${tab.id}">
+      ${desc}
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr>${headerRow}</tr></thead>
+          <tbody>${bodyRows}</tbody>
+        </table>
+      </div>
+      <div class="action-bar">
+        <button class="btn btn-secondary" onclick="clearTab('${tab.id}')">このタブをクリア</button>
+        <button class="btn btn-primary" onclick="exportData()">レビュー結果を保存</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function onReviewChange(el) {
+  const { tab, row, field } = el.dataset;
+  if (!reviewData[tab]) reviewData[tab] = {};
+  if (!reviewData[tab][row]) reviewData[tab][row] = {};
+  reviewData[tab][row][field] = el.value;
+
+  // Auto-save to localStorage
+  try { localStorage.setItem("seo-review-data", JSON.stringify(reviewData)); } catch(e) {}
+  updateProgress();
+}
+
+function updateProgress() {
+  const bar = document.getElementById("progressBar");
+  bar.innerHTML = TABS.map(tab => {
+    const data = CSV_DATA[tab.id];
+    if (!data) return "";
+    const total = data.rows.length;
+    const filled = Object.keys(reviewData[tab.id] || {}).filter(k => {
+      const entry = reviewData[tab.id][k];
+      return Object.values(entry).some(v => v && v.trim());
+    }).length;
+    const pct = total > 0 ? Math.round(filled / total * 100) : 0;
+    const dotClass = pct === 0 ? "dot-none" : pct === 100 ? "dot-done" : "dot-partial";
+    return `<div class="progress-item"><span class="progress-dot ${dotClass}"></span>${tab.label} ${filled}/${total}</div>`;
+  }).join("");
+}
+
+function clearTab(tabId) {
+  if (!confirm("このタブの入力内容をクリアしますか？")) return;
+  delete reviewData[tabId];
+  try { localStorage.setItem("seo-review-data", JSON.stringify(reviewData)); } catch(e) {}
+  // Re-render
+  renderContents();
+  document.querySelector(`.tab-btn[data-tab="${tabId}"]`).click();
+  updateProgress();
+  showToast("クリアしました");
+}
+
+function exportData() {
+  // Build export with row context
+  const exportObj = {};
+  for (const tab of TABS) {
+    const data = CSV_DATA[tab.id];
+    if (!data || !reviewData[tab.id]) continue;
+
+    const entries = [];
+    for (const [rowIdx, fields] of Object.entries(reviewData[tab.id])) {
+      if (!Object.values(fields).some(v => v && v.trim())) continue;
+      const row = data.rows[parseInt(rowIdx)];
+      const context = {};
+      data.headers.forEach((h, i) => { context[h] = row[i] || ""; });
+      entries.push({ ...context, ...fields });
+    }
+    if (entries.length > 0) {
+      exportObj[tab.id] = entries;
+    }
+  }
+
+  const json = JSON.stringify(exportObj, null, 2);
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `seo-review_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("レビュー結果をダウンロードしました");
+}
+
+function showToast(msg) {
+  const toast = document.getElementById("toast");
+  toast.textContent = msg;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 3000);
+}
+
+// Init
+loadData();
+</script>
+
+</body>
+</html>
